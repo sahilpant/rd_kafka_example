@@ -1,9 +1,7 @@
 mod hn;
 mod producer;
-// mod consumer;
 
 use actix_web::{get, web::{self, Json}, App, HttpResponse, HttpServer, Responder};
-// use consumer::consume_and_print;
 use hn::fetch_hn_stories;
 use producer::producer;
 
@@ -25,9 +23,6 @@ async fn produce(search_term: web::Path<String>) -> impl Responder {
 
 #[actix_web::main] // or #[tokio::main]
 async fn main() -> std::io::Result<()> {
-    // tokio::task::spawn_blocking( || async {
-    //     consume_and_print("0.0.0.0:9092", "group_id", &["Hacker_News"]).await;
-    // });
     HttpServer::new(|| {
         App::new()
             .service(search)
